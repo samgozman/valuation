@@ -35,3 +35,19 @@ func TestDaysBetween(t *testing.T) {
 		}
 	})
 }
+
+func TestDiscountFactor(t *testing.T) {
+	t.Run("Should calculate Discounting Factor", func(t *testing.T) {
+		attributes := DiscountFactorParams{
+			PeriodsNumber: 4.48,
+			DiscountRate:  0.083,
+		}
+
+		want := float32(0.6996239)
+		got := DiscountFactor(attributes)
+
+		if want != got {
+			t.Errorf("Expected '%v', but got '%v' with attributes: %v", want, got, attributes)
+		}
+	})
+}
