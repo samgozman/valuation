@@ -9,16 +9,7 @@ func TestPerpetuityGrowth(t *testing.T) {
 	t.Run("Should calculate EV by PerpetuityGrowth", func(t *testing.T) {
 		periods := []PerpetuityGrowthPeriod{
 			{
-				Revenue:       365817,
-				EBITDA:        120233,
-				CapEx:         11085,
-				NWC:           9975,
-				DA:            11284,
-				TaxRate:       0.17,
-				DiscountRate:  0.083,
-				PGR:           0.025,
-				BeginningDate: time.Now(),
-				EndingDate:    time.Now(),
+				NWC: 9975,
 			},
 			{
 				Revenue:       392625,
