@@ -9,6 +9,6 @@ type NOPATParams struct {
 // Net Operating Profit After Tax
 func NOPAT(params NOPATParams) float32 {
 	ebit := float32(params.EBITDA - params.DA)
-	proFormaTaxes := -1 * ebit * params.TaxRate
-	return ebit + proFormaTaxes
+	proFormaTaxes := ebit * params.TaxRate
+	return ebit - proFormaTaxes
 }
