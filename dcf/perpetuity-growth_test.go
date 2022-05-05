@@ -72,12 +72,25 @@ func TestPerpetuityGrowth(t *testing.T) {
 				EndingDate:    time.Date(2026, 9, 30, 0, 0, 0, 0, time.UTC),
 			},
 		}
+		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
 
-		want := 2206649
-		got, _ := PerpetuityGrowth(&periods)
+		want := 2206925
+
+		got, _ := PerpetuityGrowth(&periods, currentDate)
 
 		if want != int(got) {
 			t.Errorf("Expected '%v', but got '%v'", want, got)
+		}
+	})
+
+	t.Run("Should return error if periods number are less than 2", func(t *testing.T) {
+		periods := []PerpetuityGrowthPeriod{}
+		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
+
+		_, err := PerpetuityGrowth(&periods, currentDate)
+
+		if err == nil {
+			t.Error("Expected error but didn't get it")
 		}
 	})
 }

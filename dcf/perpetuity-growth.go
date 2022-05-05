@@ -26,7 +26,7 @@ type PerpetuityGrowthPeriod struct {
 }
 
 // Calculate enterprise value by Perpetuity Growth Model
-func PerpetuityGrowth(periods *[]PerpetuityGrowthPeriod) (float32, error) {
+func PerpetuityGrowth(periods *[]PerpetuityGrowthPeriod, currentDate time.Time) (float32, error) {
 	periodsNumber := len(*periods)
 
 	if periodsNumber < 2 {
@@ -53,7 +53,7 @@ func PerpetuityGrowth(periods *[]PerpetuityGrowthPeriod) (float32, error) {
 		})
 
 		dp := utils.DiscountingPeriod(utils.BalanceSheetDates{
-			Today: time.Now(),
+			Today: currentDate,
 			Begin: (*periods)[i].BeginningDate,
 			End:   (*periods)[i].EndingDate,
 		})
