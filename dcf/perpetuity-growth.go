@@ -69,7 +69,7 @@ func PerpetuityGrowth(periods *[]PerpetuityGrowthPeriod, currentDate time.Time) 
 
 	// 2. Calculate terminal discounting periods
 	discountingPeriod := utils.DiscountingPeriod(utils.BalanceSheetDates{
-		Today: time.Now(),
+		Today: currentDate,
 		Begin: (*periods)[periodsNumber-1].BeginningDate,
 		End:   (*periods)[periodsNumber-1].EndingDate.Add(365 / 2 * 24 * time.Hour),
 	})

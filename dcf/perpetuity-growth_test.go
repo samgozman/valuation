@@ -74,7 +74,7 @@ func TestPerpetuityGrowth(t *testing.T) {
 		}
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
 
-		want := 2206925
+		want := 2206160
 
 		got, _ := PerpetuityGrowth(&periods, currentDate)
 
