@@ -15,6 +15,7 @@ import (
 type PerpetuityGrowthPeriod struct {
 	Revenue       int64
 	EBITDA        int64     // Earnings before interest, taxes, depreciation and amortization
+	OtherIncome   int64     // Other Income / Expenses
 	CapEx         int64     // Capital Expenditures
 	NWC           int64     // Net Working Capital
 	DA            int64     // Depreciation & Amortization
@@ -38,9 +39,10 @@ func PerpetuityGrowth(periods *[]PerpetuityGrowthPeriod, currentDate time.Time) 
 	var terminal_fcf float32
 	for i := 1; i < periodsNumber; i++ {
 		nopat := utils.NOPAT(utils.NOPATParams{
-			EBITDA:  (*periods)[i].EBITDA,
-			DA:      (*periods)[i].DA,
-			TaxRate: (*periods)[i].TaxRate,
+			EBITDA:      (*periods)[i].EBITDA,
+			OtherIncome: (*periods)[i].OtherIncome,
+			DA:          (*periods)[i].DA,
+			TaxRate:     (*periods)[i].TaxRate,
 		})
 
 		nwcInvestment := utils.NWCInvestment((*periods)[i-1].NWC, (*periods)[i].NWC)

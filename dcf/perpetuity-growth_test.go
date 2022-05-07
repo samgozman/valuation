@@ -14,6 +14,7 @@ func TestPerpetuityGrowth(t *testing.T) {
 			{
 				Revenue:       392625,
 				EBITDA:        131478,
+				OtherIncome:   0,
 				CapEx:         11409,
 				NWC:           2929,
 				DA:            12076,
@@ -26,6 +27,7 @@ func TestPerpetuityGrowth(t *testing.T) {
 			{
 				Revenue:       416632,
 				EBITDA:        134219,
+				OtherIncome:   0,
 				CapEx:         12904,
 				NWC:           2623,
 				DA:            10281,
@@ -38,6 +40,7 @@ func TestPerpetuityGrowth(t *testing.T) {
 			{
 				Revenue:       430880,
 				EBITDA:        139974,
+				OtherIncome:   0,
 				CapEx:         14168,
 				NWC:           1557,
 				DA:            14459,
@@ -50,6 +53,7 @@ func TestPerpetuityGrowth(t *testing.T) {
 			{
 				Revenue:       457900,
 				EBITDA:        157853,
+				OtherIncome:   0,
 				CapEx:         17428,
 				NWC:           2952,
 				DA:            15037,
@@ -62,6 +66,7 @@ func TestPerpetuityGrowth(t *testing.T) {
 			{
 				Revenue:       518374,
 				EBITDA:        186210,
+				OtherIncome:   0,
 				CapEx:         16386,
 				NWC:           6607,
 				DA:            13027,
