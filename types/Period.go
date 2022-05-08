@@ -1,4 +1,4 @@
-package dcf
+package types
 
 import "time"
 

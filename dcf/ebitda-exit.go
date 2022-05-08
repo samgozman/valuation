@@ -5,9 +5,10 @@ import (
 	"time"
 
 	"github.com/samgozman/valuation/internal/utils"
+	"github.com/samgozman/valuation/types"
 )
 
-func EBITDAExit(periods *[]Period, currentDate time.Time, EBITDAExitMultiple float32) (float32, error) {
+func EBITDAExit(periods *[]types.Period, currentDate time.Time, EBITDAExitMultiple float32) (float32, error) {
 	periodsNumber := len(*periods)
 
 	if periodsNumber < 2 {

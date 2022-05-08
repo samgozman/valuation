@@ -3,11 +3,13 @@ package dcf
 import (
 	"testing"
 	"time"
+
+	"github.com/samgozman/valuation/types"
 )
 
 func TestRevenueExit(t *testing.T) {
 	t.Run("Should calculate EV by Revenue Exit strategy", func(t *testing.T) {
-		periods := []Period{
+		periods := []types.Period{
 			{
 				NWC: 9975,
 			},
@@ -85,7 +87,7 @@ func TestRevenueExit(t *testing.T) {
 	})
 
 	t.Run("Should return error if periods number are less than 2", func(t *testing.T) {
-		periods := []Period{}
+		periods := []types.Period{}
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
 		revenueExitMultiple := float32(0)
 

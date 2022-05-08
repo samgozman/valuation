@@ -5,9 +5,10 @@ import (
 	"time"
 
 	"github.com/samgozman/valuation/internal/utils"
+	"github.com/samgozman/valuation/types"
 )
 
-func RevenueExit(periods *[]Period, currentDate time.Time, revenueExitMultiple float32) (float32, error) {
+func RevenueExit(periods *[]types.Period, currentDate time.Time, revenueExitMultiple float32) (float32, error) {
 	periodsNumber := len(*periods)
 
 	if periodsNumber < 2 {
