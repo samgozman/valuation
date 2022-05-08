@@ -61,10 +61,10 @@ func EBITDAExit(periods *[]Period, currentDate time.Time, EBITDAExitMultiple flo
 	})
 
 	// 4. Calculate terminal value
-	terminalValue := utils.TerminalValueEBITDAExit(utils.TerminalValueEBITDAParams{
-		EBITDAExitMultiple: EBITDAExitMultiple,
-		TerminalEBITDA:     float32((*periods)[periodsNumber-1].EBITDA),
-		DiscountFactor:     discountFactor,
+	terminalValue := utils.TerminalValueMultiples(utils.TerminalValueMultiplesParams{
+		Multiple:       EBITDAExitMultiple,
+		TerminalValue:  float32((*periods)[periodsNumber-1].EBITDA),
+		DiscountFactor: discountFactor,
 	})
 
 	// 5. Calculate enterprise value
