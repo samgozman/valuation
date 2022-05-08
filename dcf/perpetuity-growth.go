@@ -10,7 +10,7 @@ import (
 // First index is always the current state of balance sheet.
 // If you want to calculate DCF for 5 years when you need to
 // pass 6 elements of PerpetuityGrowthPeriod into function.
-// First element will be the current state state of balance sheet
+// First element will be the current state of balance sheet
 // and the other 5 will represent your assumptions.
 type PerpetuityGrowthPeriod struct {
 	Revenue       int64
