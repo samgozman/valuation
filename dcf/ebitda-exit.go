@@ -2,7 +2,6 @@ package dcf
 
 import (
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/samgozman/valuation/internal/utils"
@@ -79,16 +78,12 @@ func EBITDAExit(periods *[]EBITDAExitPeriod, currentDate time.Time, EBITDAExitMu
 		DiscountRate:  (*periods)[periodsNumber-1].DiscountRate,
 	})
 
-	fmt.Println("EBITDAExitMultiple", EBITDAExitMultiple, "TerminalEBITDA", (*periods)[periodsNumber-1].EBITDA, "DiscountFactor", discountFactor)
-
 	// 4. Calculate terminal value
 	terminalValue := utils.TerminalValueEBITDAExit(utils.TerminalValueEBITDAParams{
 		EBITDAExitMultiple: EBITDAExitMultiple,
 		TerminalEBITDA:     float32((*periods)[periodsNumber-1].EBITDA),
 		DiscountFactor:     discountFactor,
 	})
-
-	fmt.Println("terminalValue", terminalValue, "dFCF_sum", dFCF_sum)
 
 	// 5. Calculate enterprise value
 	enterpriseValue := terminalValue + dFCF_sum
