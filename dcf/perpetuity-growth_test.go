@@ -7,7 +7,7 @@ import (
 
 func TestPerpetuityGrowth(t *testing.T) {
 	t.Run("Should calculate EV by PerpetuityGrowth", func(t *testing.T) {
-		periods := []PerpetuityGrowthPeriod{
+		periods := []Period{
 			{
 				NWC: 9975,
 			},
@@ -20,7 +20,6 @@ func TestPerpetuityGrowth(t *testing.T) {
 				DA:            12076,
 				TaxRate:       0.17,
 				DiscountRate:  0.083,
-				PGR:           0.025,
 				BeginningDate: time.Date(2022, 3, 26, 0, 0, 0, 0, time.UTC),
 				EndingDate:    time.Date(2022, 9, 30, 0, 0, 0, 0, time.UTC),
 			},
@@ -33,7 +32,6 @@ func TestPerpetuityGrowth(t *testing.T) {
 				DA:            10281,
 				TaxRate:       0.17,
 				DiscountRate:  0.083,
-				PGR:           0.025,
 				BeginningDate: time.Date(2022, 9, 30, 0, 0, 0, 0, time.UTC),
 				EndingDate:    time.Date(2023, 9, 30, 0, 0, 0, 0, time.UTC),
 			},
@@ -46,7 +44,6 @@ func TestPerpetuityGrowth(t *testing.T) {
 				DA:            14459,
 				TaxRate:       0.17,
 				DiscountRate:  0.083,
-				PGR:           0.025,
 				BeginningDate: time.Date(2023, 9, 30, 0, 0, 0, 0, time.UTC),
 				EndingDate:    time.Date(2024, 9, 30, 0, 0, 0, 0, time.UTC),
 			},
@@ -59,7 +56,6 @@ func TestPerpetuityGrowth(t *testing.T) {
 				DA:            15037,
 				TaxRate:       0.17,
 				DiscountRate:  0.083,
-				PGR:           0.025,
 				BeginningDate: time.Date(2024, 9, 30, 0, 0, 0, 0, time.UTC),
 				EndingDate:    time.Date(2025, 9, 30, 0, 0, 0, 0, time.UTC),
 			},
@@ -72,16 +68,16 @@ func TestPerpetuityGrowth(t *testing.T) {
 				DA:            13027,
 				TaxRate:       0.17,
 				DiscountRate:  0.083,
-				PGR:           0.025,
 				BeginningDate: time.Date(2025, 9, 30, 0, 0, 0, 0, time.UTC),
 				EndingDate:    time.Date(2026, 9, 30, 0, 0, 0, 0, time.UTC),
 			},
 		}
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
+		pgr := float32(0.025)
 
 		want := 2172463
 
-		got, _ := PerpetuityGrowth(&periods, currentDate)
+		got, _ := PerpetuityGrowth(&periods, currentDate, pgr)
 
 		if want != int(got) {
 			t.Errorf("Expected '%v', but got '%v'", want, got)
@@ -89,10 +85,11 @@ func TestPerpetuityGrowth(t *testing.T) {
 	})
 
 	t.Run("Should return error if periods number are less than 2", func(t *testing.T) {
-		periods := []PerpetuityGrowthPeriod{}
+		periods := []Period{}
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
+		pgr := float32(0)
 
-		_, err := PerpetuityGrowth(&periods, currentDate)
+		_, err := PerpetuityGrowth(&periods, currentDate, pgr)
 
 		if err == nil {
 			t.Error("Expected error but didn't get it")

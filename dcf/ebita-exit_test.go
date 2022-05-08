@@ -7,7 +7,7 @@ import (
 
 func TestEBITDAExit(t *testing.T) {
 	t.Run("Should calculate EV by EBITDA Exit strategy", func(t *testing.T) {
-		periods := []EBITDAExitPeriod{
+		periods := []Period{
 			{
 				NWC: 9975,
 			},
@@ -85,10 +85,11 @@ func TestEBITDAExit(t *testing.T) {
 	})
 
 	t.Run("Should return error if periods number are less than 2", func(t *testing.T) {
-		periods := []PerpetuityGrowthPeriod{}
+		periods := []Period{}
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
+		EBITDAExitMultiple := float32(0)
 
-		_, err := PerpetuityGrowth(&periods, currentDate)
+		_, err := EBITDAExit(&periods, currentDate, EBITDAExitMultiple)
 
 		if err == nil {
 			t.Error("Expected error but didn't get it")
