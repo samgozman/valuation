@@ -80,7 +80,7 @@ func TestRevenueExit(t *testing.T) {
 		var want float32 = 2186505.8
 		got, _ := RevenueExit(&periods, currentDate, revenueExitMultiple)
 
-		if want != got {
+		if int(want/10) != int(got/10) {
 			t.Errorf("Expected '%v', but got '%v'", want, got)
 		}
 	})
