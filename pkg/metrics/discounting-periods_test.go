@@ -23,7 +23,7 @@ func TestDiscountingPeriod(t *testing.T) {
 }
 
 func TestDaysBetween(t *testing.T) {
-	t.Run("Should calculate Discounting Period", func(t *testing.T) {
+	t.Run("Should calculate Days Between", func(t *testing.T) {
 		endDate := time.Date(2022, 9, 30, 0, 0, 0, 0, time.UTC)
 		startDate := time.Date(2022, 3, 26, 0, 0, 0, 0, time.UTC)
 
