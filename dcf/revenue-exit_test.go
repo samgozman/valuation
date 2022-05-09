@@ -77,11 +77,10 @@ func TestRevenueExit(t *testing.T) {
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
 		revenueExitMultiple := float32(4.7)
 
-		want := 2186505
-
+		var want float32 = 2186505.8
 		got, _ := RevenueExit(&periods, currentDate, revenueExitMultiple)
 
-		if want != int(got) {
+		if want != got {
 			t.Errorf("Expected '%v', but got '%v'", want, got)
 		}
 	})

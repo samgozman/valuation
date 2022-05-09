@@ -77,11 +77,10 @@ func TestPerpetuityGrowth(t *testing.T) {
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
 		pgr := float32(0.025)
 
-		want := 2172463
-
+		var want float32 = 2172463.2
 		got, _ := PerpetuityGrowth(&periods, currentDate, pgr)
 
-		if want != int(got) {
+		if want != got {
 			t.Errorf("Expected '%v', but got '%v'", want, got)
 		}
 	})
