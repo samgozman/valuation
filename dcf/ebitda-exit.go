@@ -4,6 +4,7 @@ import (
 	"errors"
 	"time"
 
+	"github.com/samgozman/valuation/internal/utils"
 	"github.com/samgozman/valuation/pkg/metrics"
 	"github.com/samgozman/valuation/types"
 )
@@ -19,27 +20,22 @@ func EBITDAExit(periods *[]types.Period, currentDate time.Time, EBITDAExitMultip
 	// 1. Calculate discrete Cash Flows
 	dFCF_sum, _ := metrics.DiscreteCashFlows(periods, currentDate)
 
-	// 2. Calculate terminal discounting periods
-	discountingPeriod := metrics.DiscountingPeriod(metrics.BalanceSheetDates{
-		Today: currentDate,
-		Begin: (*periods)[periodsNumber-1].BeginningDate,
-		End:   (*periods)[periodsNumber-1].EndingDate,
-	}) + 0.5
-
-	// 3. Calculate terminal discount factor
-	discountFactor := metrics.DiscountFactor(metrics.DiscountFactorParams{
-		PeriodsNumber: discountingPeriod,
-		DiscountRate:  (*periods)[periodsNumber-1].DiscountRate,
+	// 2. Calculate terminal discount factor
+	discountFactor := utils.DiscountFactorFromIntervals(utils.DiscountFactorFromIntervalsParams{
+		Today:        currentDate,
+		Begin:        (*periods)[periodsNumber-1].BeginningDate,
+		End:          (*periods)[periodsNumber-1].EndingDate,
+		DiscountRate: (*periods)[periodsNumber-1].DiscountRate,
 	})
 
-	// 4. Calculate terminal value
+	// 3. Calculate terminal value
 	terminalValue := metrics.TerminalValueMultiples(metrics.TerminalValueMultiplesParams{
 		Multiple:       EBITDAExitMultiple,
 		TerminalValue:  float32((*periods)[periodsNumber-1].EBITDA),
 		DiscountFactor: discountFactor,
 	})
 
-	// 5. Calculate enterprise value
+	// 4. Calculate enterprise value
 	enterpriseValue := terminalValue + dFCF_sum
 
 	return enterpriseValue, nil
