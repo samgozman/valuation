@@ -1,4 +1,4 @@
-package utils
+package metrics
 
 type NOPATParams struct {
 	EBITDA      int64   // Earnings before interest, taxes, depreciation, and amortization

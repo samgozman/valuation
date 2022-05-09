@@ -1,4 +1,4 @@
-package utils
+package metrics
 
 type FCFParams struct {
 	NWCInvestment int64   // Difference between NWC from previous period between the current

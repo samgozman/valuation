@@ -1,4 +1,4 @@
-package utils
+package metrics
 
 type TerminalValueParams struct {
 	FCF          float32 // Free Cash Flow

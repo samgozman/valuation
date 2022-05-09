@@ -1,4 +1,4 @@
-package utils
+package metrics
 
 type EVFromFCFParams struct {
 	TV                float32 // Terminal value
