@@ -21,7 +21,7 @@ func DiscountingPeriod(d BalanceSheetDates) float32 {
 	midYearConvention := d.Begin.Add(time.Duration(daysBetweenBeginAndEnd/2) * 24 * time.Hour)
 	daysBetweenMidYearAndToday := daysBetween(midYearConvention, d.Today)
 
-	return float32(daysBetweenMidYearAndToday) / 360
+	return float32(daysBetweenMidYearAndToday) / float32(360)
 }
 
 func DiscountFactor(params DiscountFactorParams) float32 {

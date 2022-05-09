@@ -13,7 +13,7 @@ func TestDiscountingPeriod(t *testing.T) {
 			End:   time.Date(2022, 9, 30, 0, 0, 0, 0, time.UTC),
 		}
 
-		want := float32(0.15555556)
+		var want float32 = 0.15555556
 		got := DiscountingPeriod(attributes)
 
 		if want != got {
