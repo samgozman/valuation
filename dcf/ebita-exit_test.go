@@ -77,11 +77,11 @@ func TestEBITDAExit(t *testing.T) {
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
 		EBITDAExitMultiple := float32(15.1)
 
-		want := float32(2.4494915e+06)
+		want := 2449491
 
 		got, _ := EBITDAExit(&periods, currentDate, EBITDAExitMultiple)
 
-		if want != got {
+		if want != int(got) {
 			t.Errorf("Expected '%v', but got '%v'", want, got)
 		}
 	})
