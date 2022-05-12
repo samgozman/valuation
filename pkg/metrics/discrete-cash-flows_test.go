@@ -76,8 +76,8 @@ func TestDiscreteCashFlows(t *testing.T) {
 		}
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
 
-		want_sum := float64(479780.75)
-		want_terminal := float64(136727.89)
+		want_sum := 479780.6842214495
+		want_terminal := 136727.88999999998
 		got_sum, got_terminal := DiscreteCashFlows(&periods, currentDate)
 
 		if want_sum != got_sum {

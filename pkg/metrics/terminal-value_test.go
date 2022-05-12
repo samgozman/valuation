@@ -12,10 +12,10 @@ func TestTerminalValue(t *testing.T) {
 			PGR:          0.025,
 		}
 
-		want := float64(2488417.2)
+		want := 2488417.2
 		got := TerminalValue(attributes)
 
-		if want != got {
+		if int(want) != int(got) {
 			t.Errorf("Expected '%v', but got '%v' with attributes: %v", want, got, attributes)
 		}
 	})
@@ -29,7 +29,7 @@ func TestTerminalValueMultiples(t *testing.T) {
 			DiscountFactor: 0.7,
 		}
 
-		want := float64(1955205)
+		want := 1955204.9999999998
 		got := TerminalValueMultiples(attributes)
 
 		if want != got {
