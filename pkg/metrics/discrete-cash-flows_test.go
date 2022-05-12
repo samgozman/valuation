@@ -76,15 +76,15 @@ func TestDiscreteCashFlows(t *testing.T) {
 		}
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
 
-		want_sum := 479780.6842214495
-		want_terminal := 136727.88999999998
+		want_sum := 479780
+		want_terminal := 136727
 		got_sum, got_terminal := DiscreteCashFlows(&periods, currentDate)
 
-		if want_sum != got_sum {
+		if want_sum != int(got_sum) {
 			t.Errorf("Expected '%v', but got '%v' with attributes: %v", want_sum, got_sum, periods)
 		}
 
-		if want_terminal != got_terminal {
+		if want_terminal != int(got_terminal) {
 			t.Errorf("Expected '%v', but got '%v' with attributes: %v", want_terminal, got_terminal, periods)
 		}
 	})
