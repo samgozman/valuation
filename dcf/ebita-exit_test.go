@@ -75,9 +75,9 @@ func TestEBITDAExit(t *testing.T) {
 			},
 		}
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
-		EBITDAExitMultiple := float32(15.1)
+		EBITDAExitMultiple := float64(15.1)
 
-		var want float32 = 2449491.5
+		var want float64 = 2449491.5
 		got, _ := EBITDAExit(&periods, currentDate, EBITDAExitMultiple)
 
 		if int(want/10) != int(got/10) {
@@ -88,7 +88,7 @@ func TestEBITDAExit(t *testing.T) {
 	t.Run("Should return error if periods number are less than 2", func(t *testing.T) {
 		periods := []types.Period{}
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
-		EBITDAExitMultiple := float32(0)
+		EBITDAExitMultiple := float64(0)
 
 		_, err := EBITDAExit(&periods, currentDate, EBITDAExitMultiple)
 

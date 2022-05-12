@@ -10,11 +10,11 @@ type DiscountFactorFromIntervalsParams struct {
 	Today        time.Time // Current or target date
 	Begin        time.Time // Balance Sheet Beginning Date
 	End          time.Time // Balance Sheet End Date
-	DiscountRate float32   // Discount rate (interest rate). Usually equals to WACC
+	DiscountRate float64   // Discount rate (interest rate). Usually equals to WACC
 }
 
 // A helper function to calculate the discount factor and discount periods for it
-func DiscountFactorFromIntervals(p DiscountFactorFromIntervalsParams) float32 {
+func DiscountFactorFromIntervals(p DiscountFactorFromIntervalsParams) float64 {
 	// Calculate terminal discounting period
 	discountingPeriod := metrics.DiscountingPeriod(metrics.BalanceSheetDates{
 		Today: p.Today,

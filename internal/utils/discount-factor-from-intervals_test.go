@@ -14,7 +14,7 @@ func TestDiscountFactorFromIntervals(t *testing.T) {
 			DiscountRate: 0.083,
 		}
 
-		want := float32(0.70036805)
+		want := float64(0.70036805)
 		got := DiscountFactorFromIntervals(attributes)
 
 		if want != got {

@@ -7,11 +7,11 @@ import (
 )
 
 // Calculate sum of discrete cash flows and terminal FCF value
-func DiscreteCashFlows(periods *[]types.Period, currentDate time.Time) (dfcf_sum float32, terminal_fcf float32) {
+func DiscreteCashFlows(periods *[]types.Period, currentDate time.Time) (dfcf_sum float64, terminal_fcf float64) {
 	periodsNumber := len(*periods)
 
-	var sum float32
-	var terminal float32
+	var sum float64
+	var terminal float64
 	for i := 1; i < periodsNumber; i++ {
 		nopat := NOPAT(NOPATParams{
 			EBITDA:      (*periods)[i].EBITDA,

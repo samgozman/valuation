@@ -75,9 +75,9 @@ func TestPerpetuityGrowth(t *testing.T) {
 			},
 		}
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
-		pgr := float32(0.025)
+		pgr := float64(0.025)
 
-		var want float32 = 2172463.2
+		var want float64 = 2172463.2
 		got, _ := PerpetuityGrowth(&periods, currentDate, pgr)
 
 		if int(want/10) != int(got/10) {
@@ -88,7 +88,7 @@ func TestPerpetuityGrowth(t *testing.T) {
 	t.Run("Should return error if periods number are less than 2", func(t *testing.T) {
 		periods := []types.Period{}
 		currentDate := time.Date(2022, 5, 4, 0, 0, 0, 0, time.UTC)
-		pgr := float32(0)
+		pgr := float64(0)
 
 		_, err := PerpetuityGrowth(&periods, currentDate, pgr)
 

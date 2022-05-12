@@ -14,8 +14,8 @@ type Period struct {
 	CapEx         int64     // Capital Expenditures
 	NWC           int64     // Net Working Capital
 	DA            int64     // Depreciation & Amortization
-	TaxRate       float32   // Tax rate assumption
-	DiscountRate  float32   // Discount rate (interest rate). Usually equals to WACC
+	TaxRate       float64   // Tax rate assumption
+	DiscountRate  float64   // Discount rate (interest rate). Usually equals to WACC
 	BeginningDate time.Time // Balance Sheet beginning date
 	EndingDate    time.Time // Balance Sheet ending date
 }

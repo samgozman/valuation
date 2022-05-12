@@ -12,20 +12,20 @@ type BalanceSheetDates struct {
 }
 
 type DiscountFactorParams struct {
-	PeriodsNumber float32
-	DiscountRate  float32 // Discount rate (interest rate). Usually equals to WACC
+	PeriodsNumber float64
+	DiscountRate  float64 // Discount rate (interest rate). Usually equals to WACC
 }
 
-func DiscountingPeriod(d BalanceSheetDates) float32 {
+func DiscountingPeriod(d BalanceSheetDates) float64 {
 	daysBetweenBeginAndEnd := daysBetween(d.End, d.Begin)
 	midYearConvention := d.Begin.Add(time.Duration(daysBetweenBeginAndEnd/2) * 24 * time.Hour)
 	daysBetweenMidYearAndToday := daysBetween(midYearConvention, d.Today)
 
-	return float32(daysBetweenMidYearAndToday) / float32(360)
+	return float64(daysBetweenMidYearAndToday) / float64(360)
 }
 
-func DiscountFactor(params DiscountFactorParams) float32 {
-	return float32(1 / math.Pow(float64(1+params.DiscountRate), float64(params.PeriodsNumber)))
+func DiscountFactor(params DiscountFactorParams) float64 {
+	return float64(1 / math.Pow(float64(1+params.DiscountRate), float64(params.PeriodsNumber)))
 }
 
 func daysBetween(d1 time.Time, d2 time.Time) int64 {

@@ -10,7 +10,7 @@ import (
 )
 
 // Calculate enterprise value by Revenue Exit model
-func RevenueExit(periods *[]types.Period, currentDate time.Time, revenueExitMultiple float32) (float32, error) {
+func RevenueExit(periods *[]types.Period, currentDate time.Time, revenueExitMultiple float64) (float64, error) {
 	periodsNumber := len(*periods)
 
 	if periodsNumber < 2 {
@@ -31,7 +31,7 @@ func RevenueExit(periods *[]types.Period, currentDate time.Time, revenueExitMult
 	// 3. Calculate terminal value
 	terminalValue := metrics.TerminalValueMultiples(metrics.TerminalValueMultiplesParams{
 		Multiple:       revenueExitMultiple,
-		TerminalValue:  float32((*periods)[periodsNumber-1].Revenue),
+		TerminalValue:  float64((*periods)[periodsNumber-1].Revenue),
 		DiscountFactor: discountFactor,
 	})
 

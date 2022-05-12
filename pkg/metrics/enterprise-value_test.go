@@ -12,7 +12,7 @@ func TestEnterpriseValueFromFCF(t *testing.T) {
 			DiscountFactor:    0.7,
 		}
 
-		want := float32(2166289)
+		want := float64(2166289)
 		got := EnterpriseValueFromFCF(attributes)
 
 		if want != got {

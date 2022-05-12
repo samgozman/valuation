@@ -12,7 +12,7 @@ func TestTerminalValue(t *testing.T) {
 			PGR:          0.025,
 		}
 
-		want := float32(2488417.2)
+		want := float64(2488417.2)
 		got := TerminalValue(attributes)
 
 		if want != got {
@@ -29,7 +29,7 @@ func TestTerminalValueMultiples(t *testing.T) {
 			DiscountFactor: 0.7,
 		}
 
-		want := float32(1955205)
+		want := float64(1955205)
 		got := TerminalValueMultiples(attributes)
 
 		if want != got {

@@ -10,7 +10,7 @@ import (
 )
 
 // Calculate enterprise value by Perpetuity Growth Model
-func PerpetuityGrowth(periods *[]types.Period, currentDate time.Time, PGR float32) (float32, error) {
+func PerpetuityGrowth(periods *[]types.Period, currentDate time.Time, PGR float64) (float64, error) {
 	periodsNumber := len(*periods)
 
 	if periodsNumber < 2 {

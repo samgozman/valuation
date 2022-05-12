@@ -10,7 +10,7 @@ import (
 )
 
 // Calculate enterprise value by EBITDA	Exit Model
-func EBITDAExit(periods *[]types.Period, currentDate time.Time, EBITDAExitMultiple float32) (float32, error) {
+func EBITDAExit(periods *[]types.Period, currentDate time.Time, EBITDAExitMultiple float64) (float64, error) {
 	periodsNumber := len(*periods)
 
 	if periodsNumber < 2 {
@@ -31,7 +31,7 @@ func EBITDAExit(periods *[]types.Period, currentDate time.Time, EBITDAExitMultip
 	// 3. Calculate terminal value
 	terminalValue := metrics.TerminalValueMultiples(metrics.TerminalValueMultiplesParams{
 		Multiple:       EBITDAExitMultiple,
-		TerminalValue:  float32((*periods)[periodsNumber-1].EBITDA),
+		TerminalValue:  float64((*periods)[periodsNumber-1].EBITDA),
 		DiscountFactor: discountFactor,
 	})
 
