@@ -1,5 +1,7 @@
 package roe
 
+import "errors"
+
 type DuPontAnalysisParams struct {
 	Revenue      int64
 	NetIncome    int64
@@ -16,16 +18,16 @@ type DuPontAnalysisTrends struct {
 
 type DuPontAnalysisResult struct {
 	// Array of ROE for each period
-	ROE []float32
+	ROE []float64
 
 	// The net profit margin represents a company's "bottom line" profitability
 	// once all expenses have been deducted, including the interest expense payments
 	// on debt obligations and taxes to the government.
-	NetProfitMargin []float32
+	NetProfitMargin []float64
 
 	// Total asset turnover ratio is an efficiency ratio tracking the ability
 	// of a company to generate more revenue per dollar of asset owned.
-	AssetTurnover []float32
+	AssetTurnover []float64
 
 	// Equity multiplier is a financial leverage ratio.
 	// The Equity Multiplier measures the proportion of a company's assets
@@ -33,7 +35,7 @@ type DuPontAnalysisResult struct {
 	//
 	// Higher equity multipliers typically signify that the company is utilizing
 	// a high percentage of debt in its capital structure to finance working capital needs and asset purchases.
-	EquityMultiplier []float32 // LTM (Avg Assets / Avg Equity) for current year
+	EquityMultiplier []float64 // LTM (Avg Assets / Avg Equity) for current year
 
 	// Trends for each ROE component
 	Trends DuPontAnalysisTrends
@@ -47,18 +49,20 @@ type DuPontAnalysisResult struct {
 // Note: Strong companies should have ROE that is increasing because Net Profit and Asset Turnover.
 //
 // `params` - Direction: from current year to previous
-func DuPontAnalysis(params *[]DuPontAnalysisParams) DuPontAnalysisResult {
-	// ! Add lenght check
+func DuPontAnalysis(params *[]DuPontAnalysisParams) (DuPontAnalysisResult, error) {
+	if len(*params) < 2 {
+		return DuPontAnalysisResult{}, errors.New("number of periods must be 2+")
+	}
 
-	var roeData []float32
-	var netProfitMarginData []float32
-	var assetTurnoverData []float32
-	var equityMultiplierData []float32
+	var roeData []float64
+	var netProfitMarginData []float64
+	var assetTurnoverData []float64
+	var equityMultiplierData []float64
 
 	for _, c := range *params {
-		netProfitMargin := float32(c.NetIncome) / float32(c.Revenue)
-		assetTurnover := float32(c.Revenue) / float32(c.TotalAssets)
-		equityMultiplier := float32(c.TotalAssets) / float32(c.CommonEquity)
+		netProfitMargin := float64(c.NetIncome) / float64(c.Revenue)
+		assetTurnover := float64(c.Revenue) / float64(c.TotalAssets)
+		equityMultiplier := float64(c.TotalAssets) / float64(c.CommonEquity)
 
 		roe := netProfitMargin * assetTurnover * equityMultiplier
 
@@ -75,19 +79,21 @@ func DuPontAnalysis(params *[]DuPontAnalysisParams) DuPontAnalysisResult {
 		IsEquityMultiplierUpTrend: trendAnalysis(&equityMultiplierData),
 	}
 
-	return DuPontAnalysisResult{
+	result := DuPontAnalysisResult{
 		ROE:              roeData,
 		NetProfitMargin:  netProfitMarginData,
 		AssetTurnover:    assetTurnoverData,
 		EquityMultiplier: equityMultiplierData,
 		Trends:           trends,
 	}
+
+	return result, nil
 }
 
 // Returns true if the trend was up most of the time during the given periods.
 //
 // Array order: from current year to previous
-func trendAnalysis(a *[]float32) bool {
+func trendAnalysis(a *[]float64) bool {
 	count := len(*a) - 1
 	numberOfTrueValues := 0
 	for i := count; i > 0; i-- {
@@ -96,7 +102,7 @@ func trendAnalysis(a *[]float32) bool {
 		}
 	}
 
-	if float32(numberOfTrueValues)/float32(count) > 0.5 {
+	if float64(numberOfTrueValues)/float64(count) > 0.5 {
 		return true
 	} else {
 		return false
