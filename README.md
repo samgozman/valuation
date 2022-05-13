@@ -1,5 +1,7 @@
 # valuation
 
+**Warning**: Work in progress. Currently in draft state without any review.
+
 Golang stocks valuation library (DCF, PE, DuPont etc)
 
 Read full documentation:
