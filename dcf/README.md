@@ -8,15 +8,15 @@ import "github.com/samgozman/valuation/dcf"
 
 ## Index
 
-- [func EBITDAExit(periods *[]types.Period, currentDate time.Time, EBITDAExitMultiple float32) (float32, error)](<#func-ebitdaexit>)
-- [func PerpetuityGrowth(periods *[]types.Period, currentDate time.Time, PGR float32) (float32, error)](<#func-perpetuitygrowth>)
-- [func RevenueExit(periods *[]types.Period, currentDate time.Time, revenueExitMultiple float32) (float32, error)](<#func-revenueexit>)
+- [func EBITDAExit(periods *[]types.Period, currentDate time.Time, EBITDAExitMultiple float64) (float64, error)](<#func-ebitdaexit>)
+- [func PerpetuityGrowth(periods *[]types.Period, currentDate time.Time, PGR float64) (float64, error)](<#func-perpetuitygrowth>)
+- [func RevenueExit(periods *[]types.Period, currentDate time.Time, revenueExitMultiple float64) (float64, error)](<#func-revenueexit>)
 
 
 ## func [EBITDAExit](<https://github.com/samgozman/valuation/blob/main/dcf/ebitda-exit.go#L13>)
 
 ```go
-func EBITDAExit(periods *[]types.Period, currentDate time.Time, EBITDAExitMultiple float32) (float32, error)
+func EBITDAExit(periods *[]types.Period, currentDate time.Time, EBITDAExitMultiple float64) (float64, error)
 ```
 
 Calculate enterprise value by EBITDA	Exit Model
@@ -24,7 +24,7 @@ Calculate enterprise value by EBITDA	Exit Model
 ## func [PerpetuityGrowth](<https://github.com/samgozman/valuation/blob/main/dcf/perpetuity-growth.go#L13>)
 
 ```go
-func PerpetuityGrowth(periods *[]types.Period, currentDate time.Time, PGR float32) (float32, error)
+func PerpetuityGrowth(periods *[]types.Period, currentDate time.Time, PGR float64) (float64, error)
 ```
 
 Calculate enterprise value by Perpetuity Growth Model
@@ -32,7 +32,7 @@ Calculate enterprise value by Perpetuity Growth Model
 ## func [RevenueExit](<https://github.com/samgozman/valuation/blob/main/dcf/revenue-exit.go#L13>)
 
 ```go
-func RevenueExit(periods *[]types.Period, currentDate time.Time, revenueExitMultiple float32) (float32, error)
+func RevenueExit(periods *[]types.Period, currentDate time.Time, revenueExitMultiple float64) (float64, error)
 ```
 
 Calculate enterprise value by Revenue Exit model

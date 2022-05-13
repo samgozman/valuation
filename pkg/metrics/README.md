@@ -8,15 +8,15 @@ import "github.com/samgozman/valuation/pkg/metrics"
 
 ## Index
 
-- [func DiscountFactor(params DiscountFactorParams) float32](<#func-discountfactor>)
-- [func DiscountingPeriod(d BalanceSheetDates) float32](<#func-discountingperiod>)
-- [func DiscreteCashFlows(periods *[]types.Period, currentDate time.Time) (dfcf_sum float32, terminal_fcf float32)](<#func-discretecashflows>)
-- [func EnterpriseValueFromFCF(params EVFromFCFParams) float32](<#func-enterprisevaluefromfcf>)
-- [func NOPAT(params NOPATParams) float32](<#func-nopat>)
+- [func DiscountFactor(params DiscountFactorParams) float64](<#func-discountfactor>)
+- [func DiscountingPeriod(d BalanceSheetDates) float64](<#func-discountingperiod>)
+- [func DiscreteCashFlows(periods *[]types.Period, currentDate time.Time) (dfcf_sum float64, terminal_fcf float64)](<#func-discretecashflows>)
+- [func EnterpriseValueFromFCF(params EVFromFCFParams) float64](<#func-enterprisevaluefromfcf>)
+- [func NOPAT(params NOPATParams) float64](<#func-nopat>)
 - [func NWCInvestment(NWCPrev int64, NWCCurrent int64) int64](<#func-nwcinvestment>)
-- [func TerminalValue(p TerminalValueParams) float32](<#func-terminalvalue>)
-- [func TerminalValueMultiples(p TerminalValueMultiplesParams) float32](<#func-terminalvaluemultiples>)
-- [func UnleveredFCF(params FCFParams) float32](<#func-unleveredfcf>)
+- [func TerminalValue(p TerminalValueParams) float64](<#func-terminalvalue>)
+- [func TerminalValueMultiples(p TerminalValueMultiplesParams) float64](<#func-terminalvaluemultiples>)
+- [func UnleveredFCF(params FCFParams) float64](<#func-unleveredfcf>)
 - [type BalanceSheetDates](<#type-balancesheetdates>)
 - [type DiscountFactorParams](<#type-discountfactorparams>)
 - [type EVFromFCFParams](<#type-evfromfcfparams>)
@@ -29,19 +29,19 @@ import "github.com/samgozman/valuation/pkg/metrics"
 ## func [DiscountFactor](<https://github.com/samgozman/valuation/blob/main/pkg/metrics/discounting-periods.go#L27>)
 
 ```go
-func DiscountFactor(params DiscountFactorParams) float32
+func DiscountFactor(params DiscountFactorParams) float64
 ```
 
 ## func [DiscountingPeriod](<https://github.com/samgozman/valuation/blob/main/pkg/metrics/discounting-periods.go#L19>)
 
 ```go
-func DiscountingPeriod(d BalanceSheetDates) float32
+func DiscountingPeriod(d BalanceSheetDates) float64
 ```
 
 ## func [DiscreteCashFlows](<https://github.com/samgozman/valuation/blob/main/pkg/metrics/discrete-cash-flows.go#L10>)
 
 ```go
-func DiscreteCashFlows(periods *[]types.Period, currentDate time.Time) (dfcf_sum float32, terminal_fcf float32)
+func DiscreteCashFlows(periods *[]types.Period, currentDate time.Time) (dfcf_sum float64, terminal_fcf float64)
 ```
 
 Calculate sum of discrete cash flows and terminal FCF value
@@ -49,13 +49,13 @@ Calculate sum of discrete cash flows and terminal FCF value
 ## func [EnterpriseValueFromFCF](<https://github.com/samgozman/valuation/blob/main/pkg/metrics/enterprise-value.go#L9>)
 
 ```go
-func EnterpriseValueFromFCF(params EVFromFCFParams) float32
+func EnterpriseValueFromFCF(params EVFromFCFParams) float64
 ```
 
 ## func [NOPAT](<https://github.com/samgozman/valuation/blob/main/pkg/metrics/nopat.go#L11>)
 
 ```go
-func NOPAT(params NOPATParams) float32
+func NOPAT(params NOPATParams) float64
 ```
 
 Net Operating Profit After Tax
@@ -71,7 +71,7 @@ Difference between NWC from previous period between the current \(or terminal\) 
 ## func [TerminalValue](<https://github.com/samgozman/valuation/blob/main/pkg/metrics/terminal-value.go#L16>)
 
 ```go
-func TerminalValue(p TerminalValueParams) float32
+func TerminalValue(p TerminalValueParams) float64
 ```
 
 Terminal value determines a company's value into perpetuity beyond a set forecast period — usually 5 years
@@ -79,7 +79,7 @@ Terminal value determines a company's value into perpetuity beyond a set forecas
 ## func [TerminalValueMultiples](<https://github.com/samgozman/valuation/blob/main/pkg/metrics/terminal-value.go#L22>)
 
 ```go
-func TerminalValueMultiples(p TerminalValueMultiplesParams) float32
+func TerminalValueMultiples(p TerminalValueMultiplesParams) float64
 ```
 
 Terminal value determines a company's value into perpetuity beyond a set forecast period — usually 5 years\. Calculated from EBITDA or Revenue multiples
@@ -87,7 +87,7 @@ Terminal value determines a company's value into perpetuity beyond a set forecas
 ## func [UnleveredFCF](<https://github.com/samgozman/valuation/blob/main/pkg/metrics/fcf.go#L11>)
 
 ```go
-func UnleveredFCF(params FCFParams) float32
+func UnleveredFCF(params FCFParams) float64
 ```
 
 Calculate Unlevered FCF
@@ -106,8 +106,8 @@ type BalanceSheetDates struct {
 
 ```go
 type DiscountFactorParams struct {
-    PeriodsNumber float32
-    DiscountRate  float32 // Discount rate (interest rate). Usually equals to WACC
+    PeriodsNumber float64
+    DiscountRate  float64 // Discount rate (interest rate). Usually equals to WACC
 }
 ```
 
@@ -115,9 +115,9 @@ type DiscountFactorParams struct {
 
 ```go
 type EVFromFCFParams struct {
-    TV                float32 // Terminal value
-    DiscreteCashFlows float32 // Sum of discrete cashflows
-    DiscountFactor    float32
+    TV                float64 // Terminal value
+    DiscreteCashFlows float64 // Sum of discrete cashflows
+    DiscountFactor    float64
 }
 ```
 
@@ -128,7 +128,7 @@ type FCFParams struct {
     NWCInvestment int64   // Difference between NWC from previous period between the current
     CapEx         int64   // Capital Expenditures
     DA            int64   // Depreciation & Amortization
-    NOPAT         float32 // Net Operating Profit After Tax
+    NOPAT         float64 // Net Operating Profit After Tax
 }
 ```
 
@@ -139,7 +139,7 @@ type NOPATParams struct {
     EBITDA      int64   // Earnings before interest, taxes, depreciation, and amortization
     OtherIncome int64   // Other Income / Expenses
     DA          int64   // Depreciation & Amortization
-    TaxRate     float32 // Tax rate assumption
+    TaxRate     float64 // Tax rate assumption
 }
 ```
 
@@ -147,9 +147,9 @@ type NOPATParams struct {
 
 ```go
 type TerminalValueMultiplesParams struct {
-    Multiple       float32 // Selected EBITDA Exit Multiple (EV / EBITDA) or Revenue Multiple
-    TerminalValue  float32 // Assumed terminal EBITDA or Revenue at the end of the investing cycle
-    DiscountFactor float32
+    Multiple       float64 // Selected EBITDA Exit Multiple (EV / EBITDA) or Revenue Multiple
+    TerminalValue  float64 // Assumed terminal EBITDA or Revenue at the end of the investing cycle
+    DiscountFactor float64
 }
 ```
 
@@ -157,9 +157,9 @@ type TerminalValueMultiplesParams struct {
 
 ```go
 type TerminalValueParams struct {
-    FCF          float32 // Free Cash Flow
-    DiscountRate float32 // Discount rate (interest rate). Usually equals to WACC
-    PGR          float32 // Perpetuity Growth Rate - Typically between the inflation rate of 2-3% and the GDP growth rate of 4-5%
+    FCF          float64 // Free Cash Flow
+    DiscountRate float64 // Discount rate (interest rate). Usually equals to WACC
+    PGR          float64 // Perpetuity Growth Rate - Typically between the inflation rate of 2-3% and the GDP growth rate of 4-5%
 }
 ```
 
