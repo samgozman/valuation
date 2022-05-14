@@ -9,5 +9,5 @@ type FCFParams struct {
 
 // Calculate Unlevered FCF
 func UnleveredFCF(params FCFParams) float64 {
-	return params.NOPAT + float64(params.NWCInvestment) + float64(params.DA) - float64(params.CapEx)
+	return params.NOPAT + float64(params.NWCInvestment+params.DA-params.CapEx)
 }

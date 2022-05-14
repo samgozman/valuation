@@ -25,7 +25,7 @@ func DiscountingPeriod(d BalanceSheetDates) float64 {
 }
 
 func DiscountFactor(params DiscountFactorParams) float64 {
-	return float64(1 / math.Pow(float64(1+params.DiscountRate), float64(params.PeriodsNumber)))
+	return 1 / math.Pow(1+params.DiscountRate, params.PeriodsNumber)
 }
 
 func daysBetween(d1 time.Time, d2 time.Time) int64 {
