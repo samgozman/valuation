@@ -11,6 +11,7 @@ import "github.com/samgozman/valuation/pkg/metrics"
 - [func DiscountFactor(params DiscountFactorParams) float64](<#func-discountfactor>)
 - [func DiscountingPeriod(d BalanceSheetDates) float64](<#func-discountingperiod>)
 - [func DiscreteCashFlows(periods *[]types.Period, currentDate time.Time) (dfcf_sum float64, terminal_fcf float64)](<#func-discretecashflows>)
+- [func EPV(adjEarnings int64, wacc float64) (ev int64)](<#func-epv>)
 - [func EnterpriseValueFromFCF(params EVFromFCFParams) float64](<#func-enterprisevaluefromfcf>)
 - [func NOPAT(params NOPATParams) float64](<#func-nopat>)
 - [func NWCInvestment(NWCPrev int64, NWCCurrent int64) int64](<#func-nwcinvestment>)
@@ -45,6 +46,20 @@ func DiscreteCashFlows(periods *[]types.Period, currentDate time.Time) (dfcf_sum
 ```
 
 Calculate sum of discrete cash flows and terminal FCF value
+
+## func [EPV](<https://github.com/samgozman/valuation/blob/main/pkg/metrics/epv.go#L11>)
+
+```go
+func EPV(adjEarnings int64, wacc float64) (ev int64)
+```
+
+Earnings power value \(EPV\) is a technique for valuing stocks by making assumptions about the sustainability of current earnings and the cost of capital\.
+
+\`adjEarnings\` \- Adjusted earnings
+
+\`wacc\` \- Weighted average cost of capital
+
+returns \- enterprise value
 
 ## func [EnterpriseValueFromFCF](<https://github.com/samgozman/valuation/blob/main/pkg/metrics/enterprise-value.go#L9>)
 
